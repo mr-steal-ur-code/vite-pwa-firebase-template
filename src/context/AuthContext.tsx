@@ -8,7 +8,7 @@ import {
 } from "firebase/auth";
 import { useContext, createContext, useState, useEffect } from "react";
 import handleUserDocument from "../actions/handleUserDoc";
-import bookStore from "../store/bookStore";
+import userState from "../store/userStore";
 import { auth } from "../firebase";
 
 type AuthContextType = {
@@ -27,7 +27,7 @@ type AuthContextType = {
 const AuthContext = createContext<AuthContextType | any>("");
 
 export const AuthContextProvider = ({ children }: { children: any }) => {
-	const { setUser, clearCache } = bookStore();
+	const { setUser, clearCache } = userState();
 	const [isMember, setIsMember] = useState<boolean | undefined>(undefined);
 	const [isAdmin, setIsAdmin] = useState<boolean | undefined>(undefined);
 	const [idToken, setIdToken] = useState<string | undefined>(undefined);
@@ -68,7 +68,7 @@ export const AuthContextProvider = ({ children }: { children: any }) => {
 			console.error(error);
 			return {
 				success: false,
-				response: error?.code?.split?.("/")?.[1] || error?.code,
+				response: error?.code || error?.message,
 			};
 		}
 	};
@@ -87,7 +87,7 @@ export const AuthContextProvider = ({ children }: { children: any }) => {
 			console.error(error);
 			return {
 				success: false,
-				response: error?.code?.split?.("/")?.[1] || error?.code,
+				response: error?.code || error?.message,
 			};
 		}
 	};
@@ -104,7 +104,7 @@ export const AuthContextProvider = ({ children }: { children: any }) => {
 			console.error(error);
 			return {
 				success: false,
-				response: error?.code?.split?.("/")?.[1] || error?.code,
+				response: error?.code || error?.message,
 			};
 		}
 	};
@@ -115,7 +115,7 @@ export const AuthContextProvider = ({ children }: { children: any }) => {
 			auth?.signOut();
 		} catch (error: any) {
 			console.error("Error signing out", error);
-			return error?.code?.split?.("/")?.[1] || error?.code;
+			return error?.code || error?.message;
 		}
 	};
 

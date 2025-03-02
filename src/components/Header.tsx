@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import Avatar from "./Avatar";
 import ThemeSwitch from "./Theme Switch/ThemeSwitch";
 import AppToaster from "./Toast/AppToaster";
-import bookStore from "../store/bookStore";
+import bookStore from "../store/userStore";
 import { useAuth } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import ModalProfile from "./ModalProfile";

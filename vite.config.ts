@@ -25,17 +25,17 @@ export default defineConfig({
     injectRegister: 'script-defer',
 
     manifest: {
-      name: 'Cloud Cookbook',
-      short_name: 'Cloud Cook',
-      description: 'Cloud Cookbook is your personal digital kitchen assistant. Organize your favorite cookbooks and recipes in one convenient place. Easily search, save, and share your culinary creations.',
+      name: 'My App',
+      short_name: 'App',
+      description: 'This is my app\'s description.',
       theme_color: '#FFD700',
 
       icons: [{
-        src: 'pwa-64x64.png',
+        src: '/public/assets/icon/apple-touch-icon-72x72.png',
         sizes: '64x64',
         type: 'image/png',
       }, {
-        src: 'pwa-192x192.png',
+        src: '/public/assets/icon/apple-touch-icon-180x180.png',
         sizes: '192x192',
         type: 'image/png',
       }, {

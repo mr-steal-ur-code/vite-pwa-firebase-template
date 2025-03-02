@@ -9,7 +9,7 @@ type UserStore = {
   clearCache: () => void;
 }
 
-const bookStore = create<UserStore>()(
+const userState = create<UserStore>()(
   persist((set, get) => ({
     user: get()?.user || undefined,
     setUser: async (data: User) => {
@@ -40,4 +40,4 @@ const bookStore = create<UserStore>()(
     storage: createJSONStorage(() => localStorage),
   })
 );
-export default bookStore;
+export default userState;

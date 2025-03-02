@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import Cropper from "cropperjs";
-import "cropperjs/dist/cropper.css";
-import cookStore from "../store/bookStore";
+import cookStore from "../store/userStore";
 import toast from "react-hot-toast";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
 import { storage } from "../firebase";

@@ -32,7 +32,7 @@ const countDocs = async (collectionName: string, whereStatements?: WhereStatemen
     return { success: true, response: count };
   } catch (error: any) {
     console.error("Error counting documents:", error.message || error.code);
-    return { success: false, response: error?.code?.split?.("/")?.[1] || error?.message || error?.code };
+    return { success: false, response: error?.message || error?.code };
   }
 };
 
@@ -43,7 +43,7 @@ const createDoc = async (collectionName: string, data: any, docId?: string) => {
     return { success: true, response: { id } };
   } catch (error: any) {
     console.warn("error saving Document", error?.message || error?.code)
-    return { success: false, response: error?.code?.split?.("/")?.[1] || error?.message || error?.code };
+    return { success: false, response: error?.message || error?.code };
   }
 }
 
@@ -55,7 +55,7 @@ const findDocByPath = async (path: string) => {
     } else return { success: false, response: "No document found" }
   } catch (error: any) {
     console.log("error getting document:", error?.message || error?.code)
-    return { success: false, response: error?.code?.split?.("/")?.[1] || error?.message || error?.code };
+    return { success: false, response: error?.message || error?.code };
   }
 }
 
@@ -67,7 +67,7 @@ const findDoc = async (collectionName: string, id: any) => {
     } else return { success: false, response: "No document found" }
   } catch (error: any) {
     console.log("error getting document:", error?.message || error?.code)
-    return { success: false, response: error?.code?.split?.("/")?.[1] || error?.message || error?.code };
+    return { success: false, response: error?.message || error?.code };
   }
 }
 
@@ -77,7 +77,7 @@ const updateDoc = async (collectionName: string, id: string, data: any) => {
     return { success: true, response: "Document updated successfully" };
   } catch (error: any) {
     console.warn("error updating document:", error?.message || error?.code)
-    return { success: false, response: error?.code?.split?.("/")?.[1] || error?.message || error?.code };
+    return { success: false, response: error?.message || error?.code };
   }
 }
 
@@ -87,7 +87,7 @@ const killDoc = async (collectionName: string, id: any) => {
     return { success: true, response: "Document deleted successfully" };
   } catch (error: any) {
     console.log("error deleting document:", error?.message || error?.code)
-    return { success: false, response: error?.code?.split?.("/")?.[1] || error?.message || error?.code };
+    return { success: false, response: error?.message || error?.code };
   }
 };
 
@@ -102,7 +102,7 @@ const listDocs = async (collectionName: string) => {
     } else return { success: false, response: "No Documents found" }
   } catch (error: any) {
     console.log("error getting documents:", error?.message || error?.code)
-    return { success: false, response: error?.code?.split?.("/")?.[1] || error?.message || error?.code };
+    return { success: false, response: error?.message || error?.code };
   }
 };
 
@@ -159,7 +159,7 @@ const fileUpload = async (file: File, path?: string) => {
     return { success: true, response: downloadURL };
   } catch (error: any) {
     console.error("error storing file:", error?.message || error?.code)
-    return { success: false, response: error?.code?.split?.("/")?.[1] || error?.message || error?.code };
+    return { success: false, response: error?.message || error?.code };
   }
 }
 

@@ -6,7 +6,7 @@ import AppToaster from "../../components/Toast/AppToaster";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import ErrorMessage from "../../components/ErrorMessage";
-import bookStore from "../../store/bookStore";
+import bookStore from "../../store/userStore";
 
 const Register: React.FC = () => {
 	document.title = "Register";
