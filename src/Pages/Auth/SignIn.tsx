@@ -50,7 +50,7 @@ const SignIn: React.FC = () => {
 					</Link>
 					<Button
 						submit
-						className="w-full font-bold text-lg bg-gradient-to-r from-primaryGradient-0 to-primaryGradient-1"
+						className="w-full font-bold text-lg bg-linear-to-r from-primaryGradient-0 to-primaryGradient-1"
 						text="Sign In"
 					/>
 				</form>
