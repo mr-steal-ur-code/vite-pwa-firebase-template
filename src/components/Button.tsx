@@ -49,7 +49,7 @@ const Button: React.FC<ButtonProps> = ({
 		disabled
 			? "opacity-40"
 			: type && type !== "text"
-			? "hover:bg-hoverBkg active:bg-transparent hover:opacity-70 active:opacity-20"
+			? "hover:bg-[rgb(var(--color-hover-bkg))] active:bg-transparent hover:opacity-70 active:opacity-20"
 			: "hover:opacity-70 active:opacity-20"
 	}  ${
 		color ? color : "text-content"

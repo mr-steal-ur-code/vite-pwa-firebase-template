@@ -20,16 +20,10 @@
   --color-accent-1: rgb(130, 145, 120);
   --color-accent-2: rgb(120, 125, 200);
 
-  --color-bkg: rgb(var(--color-bkg));
-  --color-bkg2: rgb(var(--color-bkg2));
-  --color-hover-bkg: rgba(var(--color-hover-bkg));
   --color-primary: rgb(225, 145, 70);
-  --color-content: rgb(var(--color-content));
-  --color-secondary: rgb(var(--color-secondary));
   --color-tertiary: rgb(0, 120, 120);
   --color-glass: rgba(0, 0, 0, 0.1);
   --color-success: rgb(75, 160, 50);
-  --color-danger: rgb(var(--color-danger));
   --color-warning: rgb(240, 210, 20);
 }
 
@@ -52,28 +46,28 @@
   }
 }
 
-@layer utilities {
-  body {
-    @apply bg-bkg text-content font-sans font-medium;
-  }
-}
+@layer utilities {}
 
 @layer base {
 
+  body {
+    @apply bg-[rgb(var(--color-bkg))] text-[rgb(var(--color-content))] font-sans font-medium;
+  }
+
   h1 {
-    @apply text-4xl lg:text-5xl text-content
+    @apply text-4xl lg:text-5xl
   }
 
   h2 {
-    @apply text-3xl lg:text-4xl text-content
+    @apply text-3xl lg:text-4xl
   }
 
   h3 {
-    @apply text-2xl lg:text-3xl text-content
+    @apply text-2xl lg:text-3xl
   }
 
   h4 {
-    @apply text-xl lg:text-2xl text-content
+    @apply text-xl lg:text-2xl
   }
 
   :root {

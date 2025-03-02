@@ -8,6 +8,7 @@ const Home: React.FC = () => {
 				{[].map((link) => (
 					<div>{link}</div>
 				))}
+				<p>Home</p>
 			</div>
 		</>
 	);

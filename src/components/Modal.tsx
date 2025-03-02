@@ -61,7 +61,7 @@ const Modal = forwardRef<ModalHandle, ModalProps>(
 			>
 				<div
 					ref={modalRef}
-					className={`relative p-4 bg-bkg2 border-2 border-white rounded-md
+					className={`relative p-4 bg-[rgb(var(--color-bkg2))] border-2 border-white rounded-md
           sm:w-[85vw] md:w-[450px] lg:w-[600px] ${animateClass}`}
 				>
 					{children}
