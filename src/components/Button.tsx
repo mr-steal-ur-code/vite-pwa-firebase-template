@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 type ButtonProps = {
 	text?: string;
 	textSize?: "sm" | "md" | "lg";
@@ -10,10 +12,10 @@ type ButtonProps = {
 	ariaLabel?: string;
 	color?:
 		| "text-success"
-		| "text-danger"
+		| "text-[rgb(var(--color-danger))]"
 		| "text-warning"
 		| "text-primary"
-		| "text-secondary"
+		| "text-[rgb(var(--color-secondary))]"
 		| "text-tertiary";
 	animation?:
 		| "animate-spin"
@@ -21,6 +23,12 @@ type ButtonProps = {
 		| "animate-ping"
 		| "animate-pulse"
 		| "animate-bounce";
+
+	href?: string;
+	navigateOptions?: {
+		replace?: boolean;
+		state?: any;
+	};
 };
 
 const Button: React.FC<ButtonProps> = ({
@@ -35,7 +43,10 @@ const Button: React.FC<ButtonProps> = ({
 	ariaLabel,
 	color,
 	animation,
+	href,
+	navigateOptions,
 }) => {
+	const navigate = useNavigate();
 	let buttonClass: string;
 	const commonClasses = `${className ? className : ""} ${
 		textSize === "sm"
@@ -52,50 +63,58 @@ const Button: React.FC<ButtonProps> = ({
 			? "hover:bg-[rgb(var(--color-hover-bkg))] active:bg-transparent hover:opacity-70 active:opacity-20"
 			: "hover:opacity-70 active:opacity-20"
 	}  ${
-		color ? color : "text-content"
-	} p-2 min-w-28 rounded-md transition-all duration-300`;
+		color ? color : ""
+	} p-2 min-w-28 rounded-md cursor-pointer transition-all duration-300`;
 
 	switch (type) {
 		case "cancel":
-			buttonClass = `${commonClasses} outline outline-danger `;
+			buttonClass = `${commonClasses} outline outline-[rgb(var(--color-danger))] outline-3`;
 			break;
 		case "reset":
-			buttonClass = `${commonClasses} outline outline-tertiary`;
+			buttonClass = `${commonClasses} outline outline-tertiary outline-3`;
 			break;
 		case "outline":
-			buttonClass = `${commonClasses} outline outline-primary`;
+			buttonClass = `${commonClasses} outline outline-primary outline-3`;
 			break;
 		case "text":
 			buttonClass = commonClasses;
 			break;
 		default:
-			buttonClass = `bg-primary ${commonClasses} `;
+			buttonClass = `bg-primary text-white ${commonClasses} `;
 			break;
 	}
 
+	const handleClick = () => {
+		if (disabled || loading) return;
+
+		if (href) {
+			navigate(href, navigateOptions);
+		} else if (onClick) {
+			onClick();
+		}
+	};
+
 	return (
-		<>
-			<button
-				type={submit ? "submit" : "button"}
-				disabled={disabled}
-				aria-label={ariaLabel}
-				className={buttonClass}
-				onClick={() => !disabled && !loading && onClick && onClick()}
-			>
-				<div className="flex justify-center gap-2 mx-auto">
-					{loading && (
-						<img
-							className={`${animation || "animate-spin"}`}
-							src="/assets/svg/spinner.svg"
-							alt="load"
-							width={30}
-							height={30}
-						/>
-					)}
-					{text || "Submit"}
-				</div>
-			</button>
-		</>
+		<button
+			type={submit ? "submit" : "button"}
+			disabled={disabled}
+			aria-label={ariaLabel}
+			className={buttonClass}
+			onClick={handleClick}
+		>
+			<div className="flex justify-center gap-2 mx-auto">
+				{loading && (
+					<img
+						className={`${animation || "animate-spin"}`}
+						src="/assets/svg/spinner.svg"
+						alt="load"
+						width={30}
+						height={30}
+					/>
+				)}
+				{text || "Submit"}
+			</div>
+		</button>
 	);
 };
 

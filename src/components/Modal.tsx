@@ -6,16 +6,17 @@ import React, {
 	forwardRef,
 } from "react";
 import ReactDOM from "react-dom";
+import Button from "./Button";
 
 type ModalProps = {
 	isOpen: boolean;
 	onClose: () => void;
 	children: React.ReactNode;
-	closeButton?: boolean;
+	footerLeftBtn?: React.ReactNode;
 };
 
 const Modal = forwardRef<ModalHandle, ModalProps>(
-	({ isOpen, onClose, children, closeButton }, ref) => {
+	({ isOpen, onClose, children, footerLeftBtn }, ref) => {
 		const modalRef = useRef<HTMLDivElement>(null);
 		const [animateClass, setAnimateClass] = useState("");
 		const [bgAnimateClass, setBgAnimateClass] = useState("");
@@ -57,22 +58,23 @@ const Modal = forwardRef<ModalHandle, ModalProps>(
 
 		const modalContent = (
 			<div
-				className={`fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black z-50 ${bgAnimateClass}`}
+				className={`fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50 z-50 ${bgAnimateClass}`}
 			>
 				<div
 					ref={modalRef}
-					className={`relative p-4 bg-[rgb(var(--color-bkg2))] border-2 border-white rounded-md
-          sm:w-[85vw] md:w-[450px] lg:w-[600px] ${animateClass}`}
+					className={`relative p-4 bg-[rgb(var(--color-bkg2))] border-2 border-white rounded-md sm:w-[85vw] md:w-[450px] lg:w-[600px] max-h-[95vh] flex flex-col ${animateClass}`}
 				>
-					{children}
-					{closeButton && (
-						<button
-							className="absolute right-0 bottom-0 p-2 hover:text-primary"
+					<div className="flex-grow overflow-auto p-2">{children}</div>
+
+					<div className="border-t border-white flex justify-between items-center p-2">
+						<div>{footerLeftBtn}</div>
+						<Button
+							type="text"
+							className="p-2 hover:text-[rgb(var(--color-danger))] cursor-pointer ml-auto"
 							onClick={dismiss}
-						>
-							Dismiss
-						</button>
-					)}
+							text="Dismiss"
+						/>
+					</div>
 				</div>
 			</div>
 		);
